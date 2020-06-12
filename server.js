@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express();
+const connectDB = require('./config/dbConfig');
 
+const app = express();
 const PORT = process.env.PORT || 3000;
+connectDB();
 
 app.get('/',(req,res)=>{
     res.send('API running')

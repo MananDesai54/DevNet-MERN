@@ -1,0 +1,3 @@
+{
+    "mongoURI":"mongodb+srv://manan:manan5401@cluster0-zkbxs.mongodb.net/devDB?retryWrites=true&w=majority"
+}
