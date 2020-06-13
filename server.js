@@ -9,10 +9,10 @@ connectDB();
 app.use(express.json({ extended:false }));
 
 //routes
-app.use('/api/users',require('./router/userRouter'));
-app.use('/api/posts',require('./router/postRouter'));
-app.use('/api/profile',require('./router/profileRouter'));
-app.use('/api/auth',require('./router/authRouter'));
+app.use('/api/users',require('./router/api/userRouter'));
+app.use('/api/posts',require('./router/api/postRouter'));
+app.use('/api/profile',require('./router/api/profileRouter'));
+app.use('/api/auth',require('./router/api/authRouter'));
 
 app.get('/',(req,res)=>{
     res.send('API running')
