@@ -8,7 +8,7 @@ const config = require('config');
 const bCrypt = require('bcryptjs');
 
 //@route    GET api/auth
-//@desc     Test router
+//@desc     get user router
 //@access   private
 router.get('/',auth,async (req,res)=>{
     try {
@@ -23,7 +23,7 @@ router.get('/',auth,async (req,res)=>{
 })
 
 //@route    POST api/auth
-//@desc     Authenticate user & get token
+//@desc     Authenticate user & get token / login
 //@access   Public
 router.post('/',
     [
@@ -62,7 +62,7 @@ router.post('/',
                 id:user.id,
             }
         }
-        jwt.sign(payload,config.get('jwtSecretKey'),{expiresIn:360000},(err,token)=>{
+        jwt.sign(payload,config.get('jwtSecretKey'),{expiresIn:'24h'},(err,token)=>{
             if(err) throw err;
             res.json({token});
         });
