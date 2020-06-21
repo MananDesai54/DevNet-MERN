@@ -375,14 +375,15 @@ router.put('/education/:edu_id',auth,async (req,res)=>{
 router.get('/github/:username',async (req,res)=>{
     try {
         const options = {
-            uri:`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created&client_id=${config.get('githubClientID')}&client_secret=${config.get('githubSecret')}`,
+            uri:`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=updated`,
+            // &client_id=${config.get('githubClientID')}&client_secret=${config.get('githubSecret')}
             method:'GET',
             headers : { 'user-agent' : 'node.js' }
         }
         request(options,(error,response,body)=>{
             if(error) return error
             if(response.statusCode !== 200) {
-                res.status(404).json({msg:'Not found'});
+                return res.status(404).json({msg:'Not found'});
             }
             res.json(JSON.parse(body))
         })
