@@ -20,7 +20,7 @@ const Login = () => {
 
     const onSubmit = async e =>{
         e.preventDefault();
-        // console.log(formData);
+        console.log(formData);
         // try {
         //     const user = {
         //         email,
