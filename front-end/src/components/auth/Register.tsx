@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/actions';
 import PropTypes from 'prop-types';
 
+// interface Props {
+//     setAlert:Function
+// }
 
-const Register = ({ setAlert }) => {
+const Register:React.FC = ({ setAlert }:any) => {
 
     const [formData, setFormData] = useState({
         name:'',
@@ -16,11 +19,11 @@ const Register = ({ setAlert }) => {
 
     const { name,email,password,password2 } = formData;
 
-    const onChange = e =>setFormData({
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>setFormData({
         ...formData,
         [e.target.name]:e.target.value
     })
-    const onSubmit = async e =>{
+    const onSubmit = async (e: { preventDefault: () => void; }) =>{
         e.preventDefault();
         if(password!==password2) {
             setAlert('Password do not match','danger');
@@ -51,7 +54,7 @@ const Register = ({ setAlert }) => {
                     name="password"
                     value={password}
                     onChange={e=>{onChange(e)}}
-                    minLength="6"
+                    minLength={6}
                 />
                 </div>
                 <div className="form-group">
@@ -61,7 +64,7 @@ const Register = ({ setAlert }) => {
                     name="password2"
                     value={password2}
                     onChange={e=>{onChange(e)}}
-                    minLength="6"
+                    minLength={6}
                 />
                 </div>
                 <input autoComplete="off" type="submit" className="btn btn-primary" value="Register" />

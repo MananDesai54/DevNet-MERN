@@ -9,7 +9,7 @@ import Alert from './components/layout/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 
-const App = ()=> 
+const App:React.FC = ()=> 
   <Provider store={store}>
     <Router>
       <Fragment>

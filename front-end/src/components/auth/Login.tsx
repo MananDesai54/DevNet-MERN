@@ -11,14 +11,14 @@ const Login = () => {
 
     const { email,password } = formData;
 
-    const onChange = e =>{
+    const onChange = (e: { target: { name: string; value: string; }; }) =>{
         setFormData({
             ...formData,
             [e.target.name]:e.target.value
         })
     };
 
-    const onSubmit = async e =>{
+    const onSubmit = async (e: { preventDefault: () => void; }) =>{
         e.preventDefault();
         console.log(formData);
         // try {
