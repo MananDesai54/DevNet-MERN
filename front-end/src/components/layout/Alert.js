@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-interface Props {
-    alerts:any
-}
 
-const Alert:React.FC<Props> = ({ alerts }:any) => 
+const Alert = ({ alerts }) => 
     alerts!==null && 
     alerts.length > 0 && 
-    alerts.map((alert: { alertType: string; id: string; msg: string; })=> (
+    alerts.map((alert)=> (
         <div className={`alert alert-${alert.alertType}`} key={alert.id}>
             {alert.msg}
         </div>
@@ -19,7 +16,7 @@ Alert.propTypes = {
     alerts:PropTypes.array
 }
 
-const mapStateToProps = (state: { alert: any; })=>({
+const mapStateToProps = (state)=>({
     alerts:state.alert
 });
 

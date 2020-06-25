@@ -1,8 +1,8 @@
 import { SET_ALERT,REMOVE_ALERT } from '../actions/types';
 
-const initState:Object = []
+const initState = []
 
-export default function(state:any=initState,action:any):Object[] {
+export default function(state=initState,action) {
 
     const { type,payload } = action;
 
@@ -13,7 +13,7 @@ export default function(state:any=initState,action:any):Object[] {
                 payload
             ]
         case REMOVE_ALERT:
-            return state.filter((alert: { id: string; }) => alert.id!==payload.id)
+            return state.filter((alert) => alert.id!==payload.id)
         default:
             return state;
     }

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 //     setAlert:Function
 // }
 
-const Register:React.FC = ({ setAlert }:any) => {
+const Register = ({ setAlert }) => {
 
     const [formData, setFormData] = useState({
         name:'',
@@ -19,11 +19,11 @@ const Register:React.FC = ({ setAlert }:any) => {
 
     const { name,email,password,password2 } = formData;
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>setFormData({
+    const onChange = e =>setFormData({
         ...formData,
         [e.target.name]:e.target.value
     })
-    const onSubmit = async (e: { preventDefault: () => void; }) =>{
+    const onSubmit = async e =>{
         e.preventDefault();
         if(password!==password2) {
             setAlert('Password do not match','danger');
