@@ -16,13 +16,13 @@ router.get('/me',auth,async (req,res)=>{
         
         const profile = await Profile.findOne({user:req.user.id}).populate('user',['name','avatar']);
         if(!profile) {
-            res.status(400).json({ msg:'Profile not found' });
+            return res.status(400).json({ msg:'Profile not found' });
         }
-        res.json(profile);
+        return res.json(profile);
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server error');
+        return res.status(500).send('Server error');
     }
 })
 
@@ -41,7 +41,7 @@ router.post('/',[
     ],async (req,res)=>{
         const error = validationResult(req);
         if(!error.isEmpty()) {
-            res.status(400).json({error:error.array()})
+            return res.status(400).json({errors:error.array()})
         }
 
         const { company,
@@ -99,7 +99,7 @@ router.post('/',[
 
         } catch (error) {
             console.error(error.message);
-            res.status(500).send('Server Error');
+            return res.status(500).send('Server Error');
         }
 })
 

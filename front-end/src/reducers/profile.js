@@ -1,7 +1,8 @@
 import {
     PROFILE_ERROR,
     GET_PROFILE,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
+    CREATE_PROFILE
 } from '../actions/types';
 
 const initState = {
@@ -21,6 +22,7 @@ export default function (state = initState, action) {
 
     switch (type) {
         case GET_PROFILE:
+        case CREATE_PROFILE:
             return {
                 ...state,
                 profile: payload,

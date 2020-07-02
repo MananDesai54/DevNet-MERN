@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profiles';
 import { Link } from 'react-router-dom';
 import Loading from '../layout/loading';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = ({ profile:{loading,profile},auth:{ user },getCurrentProfile }) => {
 
@@ -22,7 +23,7 @@ const Dashboard = ({ profile:{loading,profile},auth:{ user },getCurrentProfile }
             </p>
             { profile ? 
             <Fragment>
-                Has
+                <DashboardActions />
             </Fragment> : 
             <Fragment>
                 <p>You have not created a profile , Please add some info.</p>

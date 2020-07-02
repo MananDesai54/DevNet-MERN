@@ -14,7 +14,7 @@ router.post('/',
     [
         check('name','Name is required').not().isEmpty(),
         check('email','Enter valid email').isEmail(),
-        check('password','Enter valid passwod with atlest 6 chars').isLength({min:6})
+        check('password','Enter valid password with at-least 6 chars').isLength({min:6})
     ],
     async (req,res)=>{
     const errors = validationResult(req);

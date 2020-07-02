@@ -1,6 +1,6 @@
 {
-    "mongoURI":"YOUR_DB_CONN_URI",
-    "jwtSecretKey":"YOUR_JWT_KEY",
-    "githubClientID":"YOUR_GITHUB_CLIENT_ID",
-    "githubSecret":"YOUR_GITHUB_SECRET"
+    "mongoURI":"XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "jwtSecretKey":"XXXXXXXXXXX",
+    "githubClientID":"XXXXXXXXXXXXXX",
+    "githubSecret":"XXXXXXXXXXXXXXXXXX"
 }
