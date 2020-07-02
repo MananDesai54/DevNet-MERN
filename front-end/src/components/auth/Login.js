@@ -51,6 +51,7 @@ const Login = ({ loginUser,isAuthenticated }) => {
                     name="password"
                     value={password}
                     onChange={onChange}
+                    required
                     />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Login" />

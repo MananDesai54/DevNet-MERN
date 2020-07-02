@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link,NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { logout } from '../../actions/auth';
@@ -8,16 +8,29 @@ const Navbar = ({ logout , auth :{isAuthenticated,loading} }) => {
 
     const guestLinks = (
         <ul>
-            <li><NavLink to="/!">Developers</NavLink></li>
-            <li><NavLink to="/register">Register</NavLink></li>
-            <li><NavLink to="/login">Login</NavLink></li>
+            <li><Link to="/!">Developers</Link></li>
+            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/login">Login</Link></li>
         </ul>
     );
 
     const authLinks = (
         <ul>
-            <li><NavLink to="/!">Developers</NavLink></li>
-            <li><a onClick={logout} href="#!"><span className="hide-sm">Logout</span> <i className="fas fa-sign-out-alt"></i>{' '}</a></li>
+            <li>
+                <div>
+                    <Link to="/dashboard">
+                        <i className="fas fa-user"></i>{' '}
+                        <span className="hide-sm">Dashboard</span> 
+                    </Link>
+                </div>
+            </li>
+            <li><Link to="/!">Developers</Link></li>
+            <li>
+                <a onClick={logout} href="#!">
+                    <i className="fas fa-sign-out-alt"></i>{' '}
+                    <span className="hide-sm">Logout</span> 
+                </a>
+            </li>
         </ul>
     )
 
