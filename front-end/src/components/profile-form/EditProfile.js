@@ -59,7 +59,7 @@ const EditProfile = ({ profile:{profile,loading},createProfile,history,getCurren
           });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[loading]);
+    },[loading,getCurrentProfile]);
 
     const handleChange = (e)=>{
         setFormData({

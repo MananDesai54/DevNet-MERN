@@ -3,7 +3,9 @@ import {
     GET_PROFILE,
     CLEAR_PROFILE,
     CREATE_PROFILE,
-    UPDATE_PROFILE
+    UPDATE_PROFILE,
+    GET_PROFILES,
+    GET_GITHUB_REPO
 } from '../actions/types';
 
 const initState = {
@@ -31,6 +33,20 @@ export default function (state = initState, action) {
                 loading: false
             }
 
+        case GET_PROFILES:
+            return {
+                ...state,
+                profiles:payload,
+                loading:false
+            }
+        
+        case GET_GITHUB_REPO:
+            return {
+                ...state,
+                repositories:payload,
+                loading:false
+            }
+
         case PROFILE_ERROR:
             return {
                 ...state,
@@ -43,7 +59,6 @@ export default function (state = initState, action) {
                 ...state,
                 profile:null,
                 repositories:[],
-                loading:false
             }
 
         default:

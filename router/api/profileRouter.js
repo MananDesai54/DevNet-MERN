@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Profile = require('../../models/profileModel');
 const User = require('../../models/UserModel');
+const Post = require('../../models/postModel');
 const auth = require('../../middleware/auth');
 const { check,validationResult } = require('express-validator');
 const config = require('config');
 const request = require('request');
 const { response } = require('express');
+const axios = require('axios');
 
 //@route    GET api/profile/me
 //@desc     get user profile
@@ -142,6 +144,7 @@ router.get('/user/:user_id',async (req,res)=>{
 router.delete('/',auth,async (req,res)=>{
     try {
         
+        await Post.deleteMany({user:req.user.id});
         await Profile.findOneAndDelete({user:req.user.id});
         await User.findOneAndDelete({_id:req.user.id});
 
@@ -331,7 +334,7 @@ router.put(
   });
 
 //@route PUT api/profile/education/:edu_id
-//@desc Edit user eduvation
+//@desc Edit user education
 //@access private
 router.put('/education/:edu_id',auth,async (req,res)=>{
 
@@ -376,7 +379,6 @@ router.get('/github/:username',async (req,res)=>{
     try {
         const options = {
             uri:`https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=updated`,
-            // &client_id=${config.get('githubClientID')}&client_secret=${config.get('githubSecret')}
             method:'GET',
             headers : { 'user-agent' : 'node.js' }
         }
@@ -387,6 +389,16 @@ router.get('/github/:username',async (req,res)=>{
             }
             res.json(JSON.parse(body))
         })
+        // const uri = encodeURI(
+        //     `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
+        //   );
+        //   const headers = {
+        //     'user-agent': 'node.js',
+        //     Authorization: `token ${config.get('githubSecret')}`
+        //   };
+      
+        //   const gitHubResponse = await axios.get(uri, { headers });
+        //   return res.json(gitHubResponse.data);
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server error');

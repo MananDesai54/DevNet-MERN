@@ -16,6 +16,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/uuid": "^8.0.0",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
     "express": "^4.17.1",
@@ -24,6 +25,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.18",
+    "react-external-link": "^1.1.1",
     "request": "^2.88.2",
     "uuid": "^8.1.0"
   },
