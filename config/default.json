@@ -1,6 +1,0 @@
-{
-    "mongoURI":"XXXXXXXXXXXXXXXX",
-    "jwtSecretKey":"XXXXXXXXXXXX",
-    "githubClientID":"XXXXXXXXXXXXXXXX",
-    "githubSecret":"XXXXXXXXXXXXXXXXXXXXXx"
-}

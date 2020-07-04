@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
+import ProfileEducation from './ProfileEducation';
+import ProfileRepos from './ProfileRepos';
 
 const Profile = ({ match,profile:{profile,loading},auth,getProfileByUserId }) => {
 
@@ -27,6 +29,11 @@ const Profile = ({ match,profile:{profile,loading},auth,getProfileByUserId }) =>
                         <h2 className="text-primary">Experience</h2>
                         <ProfileExperience profile={profile} />
                     </div>
+                    <div className="profile-edu bg-white p-2">
+                        <h2 className="text-primary">Education</h2>
+                        <ProfileEducation profile={profile} />
+                    </div>
+                    { profile.githubusername && <ProfileRepos username={profile.githubusername} /> }
                 </div>
             </Fragment>
             }
@@ -48,5 +55,5 @@ const mapStateToProps = (state)=>{
 }
 
 export default connect(mapStateToProps,{
-    getProfileByUserId
+    getProfileByUserId,
 })(Profile);

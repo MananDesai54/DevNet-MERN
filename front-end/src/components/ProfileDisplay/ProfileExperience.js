@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import moment from 'moment';
 
-const ProfileExperience = ({ profile:{experience:{}} }) => {
+const ProfileExperience = ({ profile:{experience}}) => {
     return (
-        <div>
-            <h3 class="text-dark">Microsoft</h3>
-            <p>Oct 2011 - Current</p>
-            <p><strong>Position: </strong>Senior Developer</p>
-            <p>
-              <strong>Description: </strong>Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
-              ipsam, sapiente suscipit dicta eius velit amet aspernatur
-              asperiores modi quidem expedita fugit.
-            </p>
-        </div>
+        <Fragment>
+            { experience.length>0 ? experience.map((exp,index)=>(
+                <div key={index}>
+                    <h3 className="text-dark">{exp.company}</h3>
+                    <p><Moment format="YYYY/MM/DD">{moment.utc(exp.from)}</Moment> - {exp.current ? 'Current' :  <Moment format="YYYY/MM/DD">{moment.utc(exp.to)}</Moment> }
+                    </p>
+                    <p><strong>Position: </strong> {exp.title} </p>
+                    {exp.description ? 
+                        <p>
+                            <strong>Description: </strong>{exp.description}
+                        </p>
+                    : ''}
+                </div>
+            )) 
+             : <Fragment> NO Experience credential Found </Fragment> }
+        </Fragment>
     )
 }
 

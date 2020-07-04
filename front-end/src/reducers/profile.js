@@ -51,7 +51,9 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 profile: null,
-                loading: false
+                loading: false,
+                error:payload
+                
             }
 
         case CLEAR_PROFILE:
