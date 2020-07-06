@@ -107,6 +107,7 @@ router.delete('/:post_id',auth,async (req,res)=>{
         const post =  await Post.findById(req.params.post_id);
 
         if(!post) {
+            console.log('Hello');
             return res.status(404).json({msg:'Post not found'});
         }
 
@@ -143,7 +144,7 @@ router.put('/like/:post_id',auth,async (req,res)=>{
             user:req.user.id
         })
         await post.save();
-        return res.json(post);
+        return res.json(post.likes);
     } catch (error) {
         if(error.kind === 'ObjectId') {
             return res.status(404).json({msg:'Post not found'});
@@ -171,7 +172,7 @@ router.put('/unlike/:post_id',auth,async (req,res)=>{
         const index = post.likes.findIndex(like=>like.user.toString()===req.user.id);
         post.likes.splice(index,1)
         await post.save()
-        return res.json(post);
+        return res.json(post.likes);
     } catch (error) {
         if(error.kind === 'ObjectId') {
             return res.status(404).json({msg:'Post not found'});
@@ -193,9 +194,8 @@ router.post('/comment/:post_id',[auth,[
     }
 
     try {
-        const user = await User.findById(req.user.id).select('-passwod');
+        const user = await User.findById(req.user.id).select('-password');
         const post = await Post.findById(req.params.post_id);
-
         const newComment = {
             text:req.body.text,
             name:user.name,
@@ -206,7 +206,7 @@ router.post('/comment/:post_id',[auth,[
 
         await post.save();
 
-        res.json(post);
+        res.json(post.comments);
 
     } catch (error) {
         console.error(error.message);
@@ -225,7 +225,7 @@ router.delete('/comment/:post_id/:comment_id',auth,async (req,res)=>{
         if(!comment) {
             return res.status(404).json({msg:'Comment not found'});
         }
-        if(comment.user.toString()!==req.user.id) {
+        if(comment.user.toString()!==req.user.id && req.user.id!==post.user.toString()) {
             return res.status(401).json({msg:'not authorised'});
         }
 
