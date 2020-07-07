@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { Fragment,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import { logout } from '../../actions/auth';
+import { getCurrentProfile } from '../../actions/profiles';
 
-const Navbar = ({ logout , auth :{isAuthenticated,loading} }) => {
+const Navbar = ({ getCurrentProfile,logout , auth :{
+    isAuthenticated,loading
+},profile:{
+    profile
+}}) => {
 
+    useEffect(()=>{
+        getCurrentProfile();
+        document.title = 'DevNet';
+    },[getCurrentProfile]);
+    
     const guestLinks = (
         <ul>
             <li><Link to="/profiles"><i className="fas fa-users"></i>  Developers</Link></li>
@@ -43,6 +53,17 @@ const Navbar = ({ logout , auth :{isAuthenticated,loading} }) => {
                     <span className="hide-sm">Logout</span> 
                 </a>
             </li>
+            { profile!==null && !loading 
+                ?<li>
+                    <div>
+                        <Link to={`/profile/${profile.user._id}`}>
+                            <img src={profile.user.avatar} alt="avatar" className="round-img avatar" />
+                        </Link>
+                    </div>
+                </li> 
+                :<Fragment></Fragment>
+            }
+            
         </ul>
     )
 
@@ -58,15 +79,19 @@ const Navbar = ({ logout , auth :{isAuthenticated,loading} }) => {
 
 Navbar.prototype = {
     logout:PropTypes.func.isRequired,
-    auth:PropTypes.object.isRequired
+    auth:PropTypes.object.isRequired,
+    profile:PropTypes.object.isRequired,
+    getCurrentProfile:PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state)=>{
     return {
-        auth:state.auth
+        auth:state.auth,
+        profile:state.profile,
     }
 }
 
 export default connect(mapStateToProps,{
-    logout
+    logout,
+    getCurrentProfile
 })(Navbar);

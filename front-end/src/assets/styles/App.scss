@@ -1,11 +1,5 @@
 /* Global Styles */
-:root {
-  --primary-color: #17a2b8;
-  --dark-color: #343a40;
-  --light-color: #f4f4f4;
-  --danger-color: #dc3545;
-  --success-color: #28a745;
-}
+@import './theme/config.scss';
 
 * {
   box-sizing: border-box;
@@ -22,7 +16,7 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: $primary-color;
   text-decoration: none;
 }
 
@@ -67,11 +61,11 @@ img {
 }
 
 .text-primary {
-  color: var(--primary-color);
+  color: $primary-color;
 }
 
 .text-dark {
-  color: var(--dark-color);
+  color: $dark-color;
 }
 
 /* Padding */
@@ -126,9 +120,14 @@ img {
   margin: 3rem 0;
 }
 
+.avatar {
+  height: 50px;
+  width: 50px;
+}
+
 .btn {
   display: inline-block;
-  background: var(--light-color);
+  background: $light-color;
   color: #333;
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
@@ -144,7 +143,7 @@ img {
   padding: 0.1rem;
   text-align: center;
   margin: 0.3rem;
-  background: var(--light-color);
+  background: $light-color;
   color: #333;
 }
 
@@ -152,7 +151,7 @@ img {
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
-  background: var(--light-color);
+  background: $light-color;
   color: #333;
 }
 
@@ -160,7 +159,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: var(--primary-color);
+  background: $primary-color;
   color: #fff;
 }
 
@@ -168,7 +167,7 @@ img {
 .bg-light,
 .badge-light,
 .alert-light {
-  background: var(--light-color);
+  background: $light-color;
   color: #333;
 }
 
@@ -176,7 +175,7 @@ img {
 .bg-dark,
 .badge-dark,
 .alert-dark {
-  background: var(--dark-color);
+  background: $dark-color;
   color: #fff;
 }
 
@@ -184,7 +183,7 @@ img {
 .bg-danger,
 .badge-danger,
 .alert-danger {
-  background: var(--danger-color);
+  background: $danger-color;
   color: #fff;
 }
 
@@ -192,7 +191,7 @@ img {
 .bg-success,
 .badge-success,
 .alert-success {
-  background: var(--success-color);
+  background: $success-color;
   color: #fff;
 }
 
@@ -295,7 +294,7 @@ button {
 }
 
 .table th {
-  background: var(--light-color);
+  background: $light-color;
 }
 
 /* Navbar */
@@ -308,12 +307,13 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 1px $primary-color;
   opacity: 0.9;
 }
 
 .navbar ul {
   display: flex;
+  align-items: center;
 }
 
 .navbar a {
@@ -323,7 +323,7 @@ button {
 }
 
 .navbar a:hover {
-  color: var(--primary-color);
+  color: $primary-color;
 }
 
 .navbar .welcome span {
@@ -333,7 +333,7 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url('./image/showcase.jpg') no-repeat center center/cover;
+  background: url('../image/showcase.jpg') no-repeat center center/cover;
   height: 100vh;
 }
 
@@ -390,7 +390,7 @@ button {
 }
 
 .profile-top .icons a:hover {
-  color: var(--dark-color);
+  color: $dark-color;
 }
 
 .profile-about {
@@ -455,7 +455,7 @@ button {
 
 /* Posts Page */
 .post-form .post-form-header {
-  background: var(--primary-color);
+  background: $primary-color;
   padding: 0.5rem;
 }
 
@@ -475,8 +475,8 @@ button {
 }
 
 .post .comment-count {
-  background: var(--light-color);
-  color: var(--primary-color);
+  background: $light-color;
+  color: $primary-color;
   padding: 0.1rem 0.2rem;
   border-radius: 5px;
   font-size: 0.8rem;

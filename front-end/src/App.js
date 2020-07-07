@@ -1,5 +1,5 @@
 import React,{ Fragment,useEffect } from 'react';
-import './App.css';
+import './assets/styles/App.scss';
 import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';

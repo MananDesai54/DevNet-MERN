@@ -12,6 +12,7 @@ const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,d
 
     useEffect(()=>{
         getCurrentProfile();
+        document.title = 'Dashboard';
     },[getCurrentProfile]);
 
     return  (loading || profile===null)  ? <Loading /> :

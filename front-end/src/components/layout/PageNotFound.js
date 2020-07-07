@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
 
 const PageNotFound = () => {
+
+    // document.title = '404 - Page Not Found'
+
     return (
         <Fragment>
             <h1 className="x-large text-primary">
