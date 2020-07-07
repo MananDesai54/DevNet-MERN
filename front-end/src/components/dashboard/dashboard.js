@@ -8,13 +8,13 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 
-const Dashboard = ({ profile:{loading,profile},auth:{ user },getCurrentProfile,deleteAccount }) => {
+const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,deleteAccount }) => {
 
     useEffect(()=>{
         getCurrentProfile();
     },[getCurrentProfile]);
 
-    return  loading && profile===null  ? <Loading /> :
+    return  (loading || profile===null)  ? <Loading /> :
         <Fragment>
             <h1 className="large text-primary">
                 Dashboard

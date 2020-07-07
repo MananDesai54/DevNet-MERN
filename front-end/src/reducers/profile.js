@@ -5,12 +5,14 @@ import {
     CREATE_PROFILE,
     UPDATE_PROFILE,
     GET_PROFILES,
-    GET_GITHUB_REPO
+    GET_GITHUB_REPO,
+    GET_VISITED_PROFILE
 } from '../actions/types';
 
 const initState = {
     profile: null,
     profiles: [],
+    visitedProfile:null,
     repositories: [],
     loading: true,
     error: {}
@@ -31,6 +33,13 @@ export default function (state = initState, action) {
                 ...state,
                 profile: payload,
                 loading: false
+            }
+
+        case GET_VISITED_PROFILE:
+            return {
+                ...state,
+                visitedProfile:payload,
+                loading:false
             }
 
         case GET_PROFILES:

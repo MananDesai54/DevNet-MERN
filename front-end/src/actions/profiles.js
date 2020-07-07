@@ -6,11 +6,13 @@ import {
     DELETE_ACCOUNT,
     CLEAR_PROFILE,
     GET_PROFILES,
-    GET_GITHUB_REPO
+    GET_GITHUB_REPO,
+    GET_VISITED_PROFILE
 } from './types';
 import {
     setAlert
 } from './alert';
+import { showErrors } from '../utils/errors';
 import axios from 'axios';
 
 //get current profile
@@ -23,12 +25,12 @@ export const getCurrentProfile = () => async (dispatch) => {
         })
 
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: PROFILE_ERROR,
             payload: {
@@ -42,9 +44,6 @@ export const getCurrentProfile = () => async (dispatch) => {
 //get all profiles
 export const getProfiles = () => async (dispatch) => {
     
-    dispatch({
-        type:CLEAR_PROFILE
-    })
     try {
         const profile = await axios.get('/api/profile');
         dispatch({
@@ -53,12 +52,12 @@ export const getProfiles = () => async (dispatch) => {
         })
 
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: PROFILE_ERROR,
             payload: {
@@ -75,17 +74,17 @@ export const getProfileByUserId = (id) => async (dispatch) => {
     try {
         const profile = await axios.get(`/api/profile/user/${id}`);
         dispatch({
-            type: GET_PROFILE,
+            type: GET_VISITED_PROFILE,
             payload: profile.data
         })
 
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: PROFILE_ERROR,
             payload: {
@@ -107,12 +106,12 @@ export const getGithubRepos = (githubUsername) => async (dispatch) => {
         })
 
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: PROFILE_ERROR,
             payload: {
@@ -143,19 +142,20 @@ export const createProfile = (data,history,edit=false)=>async (dispatch)=>{
             history.push('/dashboard');
         }
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'));
-            })
-            dispatch({
-                type:PROFILE_ERROR,
-                payload: {
-                    msg: error.response.statusText,
-                    status: error.response.status
-                }
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'));
+        //     })
+        // }
+        showErrors(error,dispatch);
+        dispatch({
+            type:PROFILE_ERROR,
+            payload: {
+                msg: error.response.statusText,
+                status: error.response.status
+            }
+        })
     }
 }
 
@@ -176,19 +176,21 @@ export const addExperience = (data,history) =>async dispatch=>{
         dispatch(setAlert('Experience Added','success',2000));
         history.push('/dashboard');
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'));
-            })
-            dispatch({
-                type:PROFILE_ERROR,
-                payload: {
-                    msg: error.response.statusText,
-                    status: error.response.status
-                }
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'));
+        //     })
+        // }
+        console.log(error);
+        showErrors(error,dispatch);
+        dispatch({
+            type:PROFILE_ERROR,
+            payload: {
+                msg: error.response.statusText,
+                status: error.response.status
+            }
+        })
     }
 }
 
@@ -209,19 +211,20 @@ export const addEducation = (data,history) =>async dispatch=>{
         dispatch(setAlert('Education Added','success',2000));
         history.push('/dashboard');
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'));
-            })
-            dispatch({
-                type:PROFILE_ERROR,
-                payload: {
-                    msg: error.response.statusText,
-                    status: error.response.status
-                }
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'));
+        //     })
+        // }
+        showErrors(error,dispatch);
+        dispatch({
+            type:PROFILE_ERROR,
+            payload: {
+                msg: error.response.statusText,
+                status: error.response.status
+            }
+        })
     }
 }
 
@@ -236,19 +239,19 @@ export const deleteExperience = id => async dispatch => {
         dispatch(setAlert('Experience Deleted','success'));
         
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'));
-            })
-            dispatch({
-                type:PROFILE_ERROR,
-                payload: {
-                    msg: error.response.statusText,
-                    status: error.response.status
-                }
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'));
+        //     })
+        // }
+        dispatch({
+            type:PROFILE_ERROR,
+            payload: {
+                msg: error.response.statusText,
+                status: error.response.status
+            }
+        })
     }
 }
 export const deleteEducation = id => async dispatch => {
@@ -262,19 +265,19 @@ export const deleteEducation = id => async dispatch => {
         dispatch(setAlert('Education Deleted','success'));
         
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'));
-            })
-            dispatch({
-                type:PROFILE_ERROR,
-                payload: {
-                    msg: error.response.statusText,
-                    status: error.response.status
-                }
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'));
+        //     })
+        // }
+        dispatch({
+            type:PROFILE_ERROR,
+            payload: {
+                msg: error.response.statusText,
+                status: error.response.status
+            }
+        })
     }
 }
 
@@ -293,19 +296,19 @@ export const deleteAccount = ()=> async dispatch=>{
             dispatch(setAlert('Account Deleted Permanently, Sorry to see you go','success'))
             
         } catch (error) {
-            const errors = error.response.data.errors;
-            if(errors) {
-                errors.forEach(error=>{
-                    dispatch(setAlert(error.msg,'danger'));
-                })
-                dispatch({
-                    type:PROFILE_ERROR,
-                    payload: {
-                        msg: error.response.statusText,
-                        status: error.response.status
-                    }
-                })
-            }
+            // const errors = error.response.data.errors;
+            // if(errors) {
+            //     errors.forEach(error=>{
+            //         dispatch(setAlert(error.msg,'danger'));
+            //     })
+            // }
+            dispatch({
+                type:PROFILE_ERROR,
+                payload: {
+                    msg: error.response.statusText,
+                    status: error.response.status
+                }
+            })
         }
     }
 }

@@ -13,7 +13,7 @@ const Profiles = ({ getProfiles,profile:{profiles,loading} }) => {
 
     return (
         <Fragment>
-            { loading ? <Loading />: <Fragment>
+            { loading || profiles.length===0 ? <Loading />: <Fragment>
                     <h1 className="large text-primary">Developers</h1>
                     <p className="lead">
                         <i className="fab fa-connectdevelop"></i> Browse and connect with Developers

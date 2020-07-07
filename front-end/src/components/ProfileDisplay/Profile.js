@@ -10,7 +10,7 @@ import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileRepos from './ProfileRepos';
 
-const Profile = ({ match,profile:{profile,loading},auth,getProfileByUserId }) => {
+const Profile = ({ match,profile:{visitedProfile,loading},auth,getProfileByUserId }) => {
 
     useEffect(()=>{
         getProfileByUserId(match.params.id);
@@ -18,22 +18,22 @@ const Profile = ({ match,profile:{profile,loading},auth,getProfileByUserId }) =>
 
     return (
         <Fragment>
-            {profile===null || loading ? <Loading /> : 
+            {visitedProfile===null || loading ? <Loading /> : 
             <Fragment>
                 <Link to="/profiles" className="btn btn-light">Back To Profile</Link>
-                { auth.isAuthenticated && !auth.loading && auth.user._id===profile.user._id && <Link to="/edit-profile" className="btn btn-dark">Edit Profile</Link> }
+                { auth.isAuthenticated && !auth.loading && auth.user._id===visitedProfile.user._id && <Link to="/edit-profile" className="btn btn-dark">Edit Profile</Link> }
                 <div className="profile-grid my-1">
-                    <ProfileTop profile={profile} />
-                    <ProfileAbout profile={profile} />
+                    <ProfileTop profile={visitedProfile} />
+                    <ProfileAbout profile={visitedProfile} />
                     <div className="profile-exp bg-white p-2">
                         <h2 className="text-primary">Experience</h2>
-                        <ProfileExperience profile={profile} />
+                        <ProfileExperience profile={visitedProfile} />
                     </div>
                     <div className="profile-edu bg-white p-2">
                         <h2 className="text-primary">Education</h2>
-                        <ProfileEducation profile={profile} />
+                        <ProfileEducation profile={visitedProfile} />
                     </div>
-                    { profile.githubusername && <ProfileRepos username={profile.githubusername} /> }
+                    { visitedProfile.githubusername && <ProfileRepos username={visitedProfile.githubusername} /> }
                 </div>
             </Fragment>
             }

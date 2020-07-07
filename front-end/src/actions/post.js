@@ -11,6 +11,7 @@ import {
     ADD_COMMENT,
     DELETE_COMMENT
 } from './types';
+import { showErrors } from '../utils/errors';
 
 //get all posts
 export const getPosts = () => async dispatch=>{
@@ -21,12 +22,12 @@ export const getPosts = () => async dispatch=>{
             payload:res.data
         })
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -46,12 +47,12 @@ export const getPostById = (postId) => async dispatch=>{
             payload:res.data
         })
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -74,12 +75,12 @@ export const likePost = (postId) => async dispatch =>{
             }
         })
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -102,12 +103,12 @@ export const unlikePost = (postId) => async dispatch =>{
             }
         })
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -137,12 +138,13 @@ export const commentPost = (postId,text) => async dispatch =>{
         dispatch(setAlert('Comment added','success'));
 
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
+        showErrors(error,dispatch);
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -163,12 +165,12 @@ export const deleteComment = (postId,commentId) => async dispatch =>{
         })
         dispatch(setAlert('Comment deleted','success'));
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -189,12 +191,12 @@ export const deletePost = (postId) => async dispatch =>{
         })
         dispatch(setAlert('Post deleted','success'));
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
         dispatch({
             type: POST_ERROR,
             payload: {
@@ -225,12 +227,13 @@ export const addPost = post => async dispatch => {
         dispatch(setAlert('Post added','success'));
 
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach(error=>{
-                dispatch(setAlert(error.msg,'danger'))
-            })
-        }
+        // const errors = error.response.data.errors;
+        // if(errors) {
+        //     errors.forEach(error=>{
+        //         dispatch(setAlert(error.msg,'danger'))
+        //     })
+        // }
+        showErrors(error,dispatch);
         dispatch({
             type: POST_ERROR,
             payload: {

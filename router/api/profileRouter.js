@@ -165,10 +165,9 @@ router.put('/experience',[
     check('company','Company is required').not().isEmpty(),
     check('from','From is required').not().isEmpty()
 ],async (req,res)=>{
-    const error = validationResult(req);
-    if(!error.isEmpty()) {
-        console.log('Validaion error');
-        res.status(400).json({msg:error.array()});
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
 
     const {
