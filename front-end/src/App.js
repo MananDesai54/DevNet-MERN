@@ -1,7 +1,8 @@
 import React,{ useEffect } from 'react';
 import './assets/styles/App.scss';
+import './assets/styles/style.scss';
 import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
+import Navbar from './components/NavBar/Navbar';
 import Landing from './components/layout/Landing';
 import { connect } from 'react-redux';
 // import store from './store';

@@ -1,2 +1,54 @@
 @import './theme/config.scss';
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.navbar {
+    position: relative;
+}
+
+.navbar-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-item .icon-button {
+    text-decoration: none;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: $other-dark;
+    border-radius: 50%;
+    transition: filter 400ms ease-in-out;
+    font-size: 20px;
+    &:hover {
+        filter: brightness(2);
+    }
+}
+.navbar-item div a {
+    border-radius: 30px !important;
+    background-color: $dark-color;
+    transition: background 400ms ease-in-out;
+    &:hover {
+        background: $dark-accent;
+    }
+}
+
+.dropdown {
+    position: absolute;
+    top:60px;
+    right: 10px;
+    background: $other-dark;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+.menu-item {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}

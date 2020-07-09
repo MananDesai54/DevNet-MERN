@@ -19,6 +19,7 @@ const Navbar = ({ getCurrentProfile,logout , auth :{
 }) => {
 
     const [checked,setChecked] = useState(darkTheme);
+    const [open,setOpen] = useState(false);
 
     useEffect(()=>{
         getCurrentProfile();
@@ -63,7 +64,8 @@ const Navbar = ({ getCurrentProfile,logout , auth :{
             </li>
             <li>
                 <div>
-                    <img src={Sun} alt="" height={20} width={20} style={{width:'30px'}} onClick={changeTheme} />
+                    <img src={Sun} alt="" height={15} width={20} style={{width:'30px'}} onClick={changeTheme} />
+                    <Switch checked={checked} onChange={changeTheme} />
                     <img src={Moon} alt="" height={15} width={20} style={{width:'20px'}} onClick={changeTheme} />
                 </div>
             </li>
@@ -91,10 +93,51 @@ const Navbar = ({ getCurrentProfile,logout , auth :{
         <nav className="navbar bg-dark">
             <h1>
                 <Link to="/"><i className="fas fa-globe"></i> DevNet</Link>
-                <Switch checked={checked} onChange={changeTheme} 
-                />
             </h1>
-            { !loading && (<React.Fragment>{isAuthenticated?authLinks:guestLinks}</React.Fragment>) }
+            {/* { !loading && (<React.Fragment>{isAuthenticated?authLinks:guestLinks}</React.Fragment>) } */}
+            <ul className="navbar-nav">
+                { profile!==null && !loading 
+                    ?<li className="navbar-item">
+                        <div>
+                            <Link to={`/profile/${profile.user._id}`} className="navbar-item">
+                                <img src={profile.user.avatar} alt="avatar" className="round-img avatar" />{' '}
+                                <p> {` ${profile.user.name}`} </p>
+                            </Link>
+                        </div>
+                    </li> 
+                    :<Fragment></Fragment>
+                }
+                <li className="navbar-item">
+                    <a href="#!" className="icon-button">
+                        <i className="material-icons">add</i>
+                    </a>
+                </li>
+                <li className="navbar-item">
+                    <a href="#!" className="icon-button">
+                        <i className="material-icons">message</i>
+                    </a>
+                </li>
+                <li className="navbar-item" onClick={()=>{
+                    setOpen(!open);
+                }}>
+                    <a href="#!" className="icon-button">
+                        <i className="material-icons">arrow_drop_down</i>
+                    </a>
+                    { open && 
+                        <div className="dropdown">
+                            <a href="#!" className="menu-item">
+                                {/* <img src={profile.user.avatar} alt="avatar" className="round-img avatar" /> */}
+                                <span>My Profile</span>
+                            </a>
+                            <a href="#!" className="menu-item">
+                                <span><i className="material-icons">settings</i></span>
+                                <p>Setting</p>
+                                <span><i className="material-icons">arrow_forward_ios</i></span>
+                            </a>
+                        </div>
+                    }
+                </li>
+            </ul>
         </nav>
     )
 }
