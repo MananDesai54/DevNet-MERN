@@ -1,29 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavLink from './GuestLinkNavItem';
 
 const GuestLinks = () => {
     return (
         <ul className="navbar-nav">
-            <li className="navbar-item">
-                <Link to="/register" className="navbar-link">
-                    <span> <i className="fas fa-user-plus"></i> </span>{' '}
-                    <p>Register</p>
-                </Link>
-            </li>
-            <li className="navbar-item">
-                <Link to="/login" className="navbar-link">
-                    <span> <i className="fas fa-sign-in-alt"></i> </span>{' '}
-                    <p>Login</p>
-                </Link>
-            </li>
-            <li className="navbar-item">
-                <Link to="/profiles" className="navbar-link">
-                    <span><i className="fas fa-users"></i></span>{' '}
-                    <p>Developers</p>
-                </Link>
-            </li>
+            <NavLink linkTo="/register" icon="fas fa-user-plus" title="Register" />
+            <NavLink linkTo="/login" icon="fas fa-sign-in-alt" title="Login" />
+            <NavLink linkTo="/profiles" icon="fas fa-users" title="Developers" />
         </ul>
     )
 }
 
-export default GuestLinks
+export default GuestLinks;
