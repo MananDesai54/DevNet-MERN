@@ -8,6 +8,8 @@ import { Switch } from '@material-ui/core';
 import { setTheme } from '../../actions/theme';
 import Sun from '../../assets/svg/sun.svg';
 import Moon from '../../assets/svg/moon.svg';
+import { CSSTransition } from 'react-transition-group';
+import GuestLink from './GuestLinks';
 
 const Navbar = ({ getCurrentProfile,logout , auth :{
     isAuthenticated,loading
@@ -20,6 +22,12 @@ const Navbar = ({ getCurrentProfile,logout , auth :{
 
     const [checked,setChecked] = useState(darkTheme);
     const [open,setOpen] = useState(false);
+    const [activeMenu,setActiveMenu] = useState('main');
+    const [height,setHeight] = useState(null);
+
+    const calcHeight = e =>{
+        setHeight(e.offsetHeight+80);
+    }
 
     useEffect(()=>{
         getCurrentProfile();
@@ -32,60 +40,119 @@ const Navbar = ({ getCurrentProfile,logout , auth :{
     }
     
     const guestLinks = (
-        <ul>
-            <li><Link to="/profiles"><i className="fas fa-users"></i>  Developers</Link></li>
-            <li><Link to="/register">Register</Link></li>
-            <li><Link to="/login">Login</Link></li>
-        </ul>
+        <GuestLink />
     );
 
     const authLinks = (
-        <ul>
-            <li>
-                <div>
-                    <Link to="/posts">Posts</Link>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <Link to="/dashboard">
-                        <i className="fas fa-user"></i>{' '}
-                        <span className="hide-sm">Dashboard</span> 
-                    </Link>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <Link to="/profiles">
-                        <i className="fas fa-users"></i>{' '}
-                        <span className="hide-sm">Developers</span>
-                    </Link>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <img src={Sun} alt="" height={15} width={20} style={{width:'30px'}} onClick={changeTheme} />
-                    <Switch checked={checked} onChange={changeTheme} />
-                    <img src={Moon} alt="" height={15} width={20} style={{width:'20px'}} onClick={changeTheme} />
-                </div>
-            </li>
-            <li>
-                <a onClick={logout} href="#!">
-                    <i className="fas fa-sign-out-alt"></i>{' '}
-                    <span className="hide-sm">Logout</span> 
-                </a>
-            </li>
+        <ul className="navbar-nav">
             { profile!==null && !loading 
-                ?<li>
+                ?<li className="navbar-item" title={profile.user.name}>
                     <div>
-                        <Link to={`/profile/${profile.user._id}`}>
-                            <img src={profile.user.avatar} alt="avatar" className="round-img avatar" />
+                        <Link to={`/profile/${profile.user._id}`} className="navbar-link">
+                            <img src={profile.user.avatar} alt="avatar" className="round-img avatar" />{' '}
+                            <p> {` ${profile.user.name}`} </p>
                         </Link>
                     </div>
                 </li> 
                 :<Fragment></Fragment>
             }
-            
+            <li className="navbar-item">
+                <a href="#!" className="icon-button" title="Create Post">
+                    <i className="material-icons">add</i>
+                </a>
+            </li>
+            <li className="navbar-item" title="Send Message">
+                <a href="#!" className="icon-button">
+                    <i className="material-icons">message</i>
+                </a>
+            </li>
+            <li className="navbar-item" title="Options">
+                <a href="#!" className="icon-button" onClick={()=>{
+                    setOpen(!open);
+                }}>
+                    <i className="material-icons">arrow_drop_down</i>
+                </a>
+                { open && 
+                <div className="dropdown" style={{height:height}}>
+                    <CSSTransition 
+                        in={activeMenu === 'main'}
+                        unmountOnExit 
+                        timeout={400} 
+                        classNames='menu-primary'
+                        onEnter={calcHeight}
+                    >
+                        <div className="menu">
+                        { profile!==null && !loading 
+                            ?<Link to={`/profile/${profile.user._id}`} className="menu-item check-profile" title={profile.user.name}>
+                                <img src={profile.user.avatar} alt="avatar" className="round-img avatar" />{' '}
+                                <p className="menu-title user-profile">
+                                    <span>{` ${profile.user.name}`} </span>
+                                    <small>Check Your Profile</small>
+                                </p>
+                                <span><i className="material-icons">arrow_forward_ios</i></span>
+                            </Link> 
+                            :<Fragment></Fragment>
+                        }
+                            <a href="#!" className="menu-item" onClick={()=>{
+                                setActiveMenu('settings')
+                            }}>
+                                <span className="icon-button"><i className="material-icons">settings</i></span>
+                                <p className="menu-title">Setting</p>
+                                <span><i className="material-icons">arrow_forward_ios</i></span>
+                            </a>
+                            <a href="#!" className="menu-item">
+                                <span className="icon-button"><i className="material-icons">help</i></span>
+                                <p className="menu-title">Help & Support</p>
+                                <span><i className="material-icons">arrow_forward_ios</i></span>
+                            </a>
+                            <a href="#!" className="menu-item">
+                                <span className="icon-button">
+                                    <i className="fas fa-moon"></i>
+                                </span>
+                                <p className="menu-title">Dark mode</p>
+                                <img src={Sun} alt="" height={20} width={20} style={{width:'30px'}} onClick={changeTheme} />
+                                <Switch checked={checked} onChange={changeTheme} />
+                                <img src={Moon} alt="" height={15} width={20} style={{width:'20px'}} onClick={changeTheme} />
+                            </a>
+                            <Link to="/posts" className="menu-item">
+                                <span className="icon-button"><i className="fas fa-code"></i></span>
+                                <p className="menu-title">Posts</p>
+                            </Link>
+                            <Link to="/profiles" className="menu-item">
+                                <span className="icon-button"><i className="fas fa-users"></i></span>
+                                <p className="menu-title">Developers</p>
+                            </Link>
+                            <a onClick={logout} href="#!" className="menu-item">
+                                <span className="icon-button"><i className="fas fa-sign-out-alt"></i></span>
+                                <p className="menu-title">Logout</p> 
+                            </a>
+                        </div>
+                    </CSSTransition>
+                    <CSSTransition 
+                        in={activeMenu === 'settings'} 
+                        unmountOnExit 
+                        timeout={400} 
+                        classNames='menu-secondary'
+                        onEnter={calcHeight}
+                    >
+                        <div className="menu">
+                            <a href="#!" className="menu-item"onClick={()=>{
+                                    setActiveMenu('main')
+                                }} >
+                                <span className="icon-button" >
+                                    <i className="material-icons">west</i>
+                                </span>
+                            </a>
+                            <a href="#!" className="menu-item">
+                                <span className="icon-button"><i className="material-icons">password</i></span>
+                                <p className="menu-title">Change password</p>
+                                <span><i className="material-icons">arrow_forward_ios</i></span>
+                            </a>
+                        </div>
+                    </CSSTransition>
+                </div>
+            }
+            </li>
         </ul>
     )
 
@@ -94,50 +161,8 @@ const Navbar = ({ getCurrentProfile,logout , auth :{
             <h1>
                 <Link to="/"><i className="fas fa-globe"></i> DevNet</Link>
             </h1>
-            {/* { !loading && (<React.Fragment>{isAuthenticated?authLinks:guestLinks}</React.Fragment>) } */}
-            <ul className="navbar-nav">
-                { profile!==null && !loading 
-                    ?<li className="navbar-item">
-                        <div>
-                            <Link to={`/profile/${profile.user._id}`} className="navbar-item">
-                                <img src={profile.user.avatar} alt="avatar" className="round-img avatar" />{' '}
-                                <p> {` ${profile.user.name}`} </p>
-                            </Link>
-                        </div>
-                    </li> 
-                    :<Fragment></Fragment>
-                }
-                <li className="navbar-item">
-                    <a href="#!" className="icon-button">
-                        <i className="material-icons">add</i>
-                    </a>
-                </li>
-                <li className="navbar-item">
-                    <a href="#!" className="icon-button">
-                        <i className="material-icons">message</i>
-                    </a>
-                </li>
-                <li className="navbar-item" onClick={()=>{
-                    setOpen(!open);
-                }}>
-                    <a href="#!" className="icon-button">
-                        <i className="material-icons">arrow_drop_down</i>
-                    </a>
-                    { open && 
-                        <div className="dropdown">
-                            <a href="#!" className="menu-item">
-                                {/* <img src={profile.user.avatar} alt="avatar" className="round-img avatar" /> */}
-                                <span>My Profile</span>
-                            </a>
-                            <a href="#!" className="menu-item">
-                                <span><i className="material-icons">settings</i></span>
-                                <p>Setting</p>
-                                <span><i className="material-icons">arrow_forward_ios</i></span>
-                            </a>
-                        </div>
-                    }
-                </li>
-            </ul>
+            { !loading && (<React.Fragment>{isAuthenticated?authLinks:guestLinks}</React.Fragment>) }
+            
         </nav>
     )
 }

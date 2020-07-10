@@ -1,5 +1,5 @@
 import React,{ useEffect } from 'react';
-import './assets/styles/App.scss';
+// import './assets/styles/App.scss';
 import './assets/styles/style.scss';
 import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import Navbar from './components/NavBar/Navbar';
@@ -22,6 +22,9 @@ const App = ({ theme:{
   useEffect(()=> {
     loadUser();
   },[loadUser]);
+  // window.addEventListener('click',e=>{
+  //   console.log(e.target);
+  // })
 
   return(
     // <Provider store={store}>

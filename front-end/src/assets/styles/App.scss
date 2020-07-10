@@ -120,10 +120,7 @@ img {
   margin: 3rem 0;
 }
 
-.avatar {
-  height: 30px;
-  width: 30px;
-}
+
 
 .btn {
   display: inline-block;
@@ -213,9 +210,6 @@ img {
   border: #ccc solid 1px;
 }
 
-.round-img {
-  border-radius: 50%;
-}
 
 .line {
   height: 1px;
@@ -298,34 +292,7 @@ button {
 }
 
 /* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  top: 0;
-  border-bottom: solid 1px $primary-color;
-  opacity: 0.9;
-}
 
-.navbar ul {
-  display: flex;
-  align-items: center;
-}
-
-.navbar a {
-  color: #fff;
-  padding: 0.45rem;
-  margin: 0 0.25rem;
-}
-
-
-.navbar .welcome span {
-  margin-right: 0.6rem;
-}
 
 /* Landing Page */
 .landing {
