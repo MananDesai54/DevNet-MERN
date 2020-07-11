@@ -3,6 +3,7 @@ import { Link,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';  
 import Register from '../auth/Register';
+import Card from '../Card/Card';
 // import Developer from  '../../assets/svg/developer.svg';
 
 const Landing = ({ auth:{isAuthenticated} }) => {
@@ -15,8 +16,7 @@ const Landing = ({ auth:{isAuthenticated} }) => {
                 <div className="dark-overlay">
                     <div className="landing-inner">
                         <div className="intro">
-                            <h1 className="x-large">Welcome,</h1>
-                            <h1 className="x-large">Developer..!</h1>
+                            <h1 className="x-large">Welcome, Developers..!</h1>
                             <p className="lead">
                                 Create Profile and connect with other Developers. Post any project , Share Github repositories , Make own Portfolio , Find any developer near your location and many more You can do here.
                             </p>
@@ -32,12 +32,21 @@ const Landing = ({ auth:{isAuthenticated} }) => {
                 </div>
             </section>
             <section className="details">
-                <div className="card">
-                    <span className="icon">
-                        <i className="material-icons">location</i>
-                    </span>
-                    hello
-                </div>
+                <Card 
+                    icon="room" 
+                    title="Find & Connect with Other Developers."
+                    description="You can find any developer by technology stack ( i.e - JavaScript developer , AI expert  ) or check for developer around your area."
+                />
+                <Card 
+                    icon="message" 
+                    title="share Post & Projects"
+                    description="You can share anything related to Programming , Frameworks , Projects and many more related ro Computer science."
+                />
+                <Card 
+                    icon="code" 
+                    title="Create Your Own Portfolio"
+                    description="You can create your portfolio and share and use it any whee you want."
+                />
             </section>
         </Fragment>
     )

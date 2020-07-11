@@ -202,14 +202,11 @@ margin: 0 0.25rem;
 //landing page
 .landing {
     background: url(../image/code.jpg) no-repeat;
-    height: 100vh;
-    overflow-x: hidden;
-    object-fit: cover;
-    background-position: center;
+    object-fit: center;
+    background-size: auto 100%;
 }
 .landing .dark-overlay {
-    height: 100%;
-    background: rgba($other-dark,0.8);
+    background: rgba($color: #000000, $alpha: 0.5);
     display: flex;
     align-items: flex-start;
     color: #eee;
@@ -255,11 +252,10 @@ margin: 0 0.25rem;
     width: 100%;
     border-radius: 10px;
     border: 1px solid #ddd;
-    margin: 10px 0;
     outline: none;
-    transition: border 400ms ease-in-out;
+    transition: border 200ms ease-in-out;
     &:focus {
-        border:1px solid gray;
+        border:2px solid gray;
     }
 }
 .form .btn {
@@ -282,4 +278,28 @@ margin: 0 0.25rem;
     }
 }
 .details {
+}
+@media(min-width:800px) {
+    .landing-inner {
+        height: 100vh;
+        object-fit: cover;
+        background-position: center;
+        background-size: 100%;
+    }
+}
+@media(max-width:800px) {
+    .landing-inner {
+        flex-direction: column;
+        transform: scale(0.9);
+        .intro {
+            width: 100%;
+            margin-top: 1em;
+            .lead {
+                margin: 10px;
+            }
+        }
+        .register {
+            width: 100%;
+        }
+    }
 }
