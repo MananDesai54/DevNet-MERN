@@ -29,3 +29,12 @@ $ff-body: "Assistant", sans-serif;
     $foreground: $clr-light;
     $background: $clr-dark;
 }
+
+@mixin  button($background-color,$text-color) {
+    color: $text-color;
+    background-color: $background-color;
+    transition: background 400ms ease-in-out;
+    &:hover {
+        background-color: rgba($background-color, 0.5);
+    }
+}

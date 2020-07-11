@@ -15,7 +15,7 @@ const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,d
         document.title = 'Dashboard';
     },[getCurrentProfile]);
 
-    return  (loading || profile===null)  ? <Loading /> :
+    return  (loading && profile===null)  ? <Loading /> :
         <Fragment>
             <h1 className="large text-primary">
                 Dashboard

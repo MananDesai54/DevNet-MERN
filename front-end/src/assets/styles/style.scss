@@ -15,12 +15,44 @@ ul {
 a {
     text-decoration: none;
 }
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+  }
 .avatar {
     height: 30px;
     width: 30px;
 }
 .round-img {
     border-radius: 50%;
+}
+.x-large {
+    font-size: 3em;
+}
+.large {
+    font-size: 2em;
+    text-align: center;
+}
+.text-primary {
+    color:$primary-color;
+}
+.btn {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.btn-primary {
+    @include button($primary-color,$light-color)
+}
+.btn-light {
+    @include button($light-color,$dark-color)
+}
+.my-1 {
+    margin: 1em 0;
 }
 
 /*navbar*/
@@ -35,8 +67,6 @@ a {
     z-index: 1;
     width: 100%;
     top: 0;
-    border-bottom: solid 1px $primary-color;
-    opacity: 0.9;
 }
 
 .navbar ul {
@@ -166,4 +196,90 @@ margin: 0 0.25rem;
 .menu-secondary-exit-active {
     transform: translateX(110%);
     transition: all 300ms ease-in-out;
+}
+
+
+//landing page
+.landing {
+    background: url(../image/code.jpg) no-repeat;
+    height: 100vh;
+    overflow-x: hidden;
+    object-fit: cover;
+    background-position: center;
+}
+.landing .dark-overlay {
+    height: 100%;
+    background: rgba($other-dark,0.8);
+    display: flex;
+    align-items: flex-start;
+    color: #eee;
+}
+.landing-inner {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1em;
+    margin-left: 3em;
+}
+.landing-inner * {
+    margin-top: 0.5em;
+}
+.landing-inner .intro {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.intro .buttons {
+    margin-top: 20px;
+}
+.landing-inner .lead {
+    max-width: 90%;
+    margin: 1.5em 0;
+    font-size: 1.5em;
+}
+.landing-inner .register {
+    margin-top: 5em;
+    background-color: $light-color;
+    color: $dark-color;
+    width: 40%;
+    height: 80%;
+    margin-right: 2em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 20px 40px;
+}
+.form input {
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    outline: none;
+    transition: border 400ms ease-in-out;
+    &:focus {
+        border:1px solid gray;
+    }
+}
+.form .btn {
+    border: none;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+    padding: 15px;
+    font-size: 1em;
+    width: 100%;
+}
+.form small {
+    color:gray;
+    margin-top: -10px;
+}
+.already-text {
+    margin-top: 1em;
+    text-align: center;
+    a {
+        color: $primary-color;
+    }
+}
+.details {;
 }

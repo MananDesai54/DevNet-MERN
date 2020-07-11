@@ -2,7 +2,7 @@ import React,{ useState,Fragment } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
-import { register } from '../../actions/auth'
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 // interface Props {
@@ -40,7 +40,6 @@ const Register = ({ setAlert,register,isAuthenticated }) => {
     return (
         <Fragment>
             <h1 className="large text-primary">Sign Up</h1>
-            <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
             <form className="form" onSubmit={onSubmit}>
                 <div className="form-group">
                 <input autoComplete="off" type="text" placeholder="Name" name="name" value={name} onChange={e =>{ onChange(e)}}   required/>
@@ -62,6 +61,9 @@ const Register = ({ setAlert,register,isAuthenticated }) => {
                     minLength={6}
                  required/>
                 </div>
+                <small>
+                    Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.
+                </small>
                 <div className="form-group">
                 <input autoComplete="off"
                     type="password"
@@ -72,9 +74,9 @@ const Register = ({ setAlert,register,isAuthenticated }) => {
                     minLength={6}
                  required/>
                 </div>
-                <input autoComplete="off" type="submit" className="btn btn-primary" value="Register" />
+                <button type="submit" className="btn btn-primary">Register</button>
             </form>
-            <p className="my-1">
+            <p className="my-1 already-text">
                 Already have an account? <Link to="/login">Sign In</Link>
             </p>
         </Fragment>
