@@ -5,8 +5,9 @@ const Card = ({ icon,title,description }) => {
         <div className="card">
             <span className="icon">
                 <i className="material-icons">{icon}</i>
+                {/* <img src={icon} alt=""/> */}
             </span>
-            <h3 className="detail-title">
+            <h3 className="card-title">
                  {title}
             </h3>
             <p className="description">

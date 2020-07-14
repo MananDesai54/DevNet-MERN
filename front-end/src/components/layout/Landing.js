@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';  
 import Register from '../auth/Register';
 import Card from '../Card/Card';
+// import location from '../../assets/svg/location.svg';
+// import post from '../../assets/svg/post.svg';
+// import coding from '../../assets/svg/coding.svg';
 // import Developer from  '../../assets/svg/developer.svg';
 
 const Landing = ({ auth:{isAuthenticated} }) => {
@@ -34,16 +37,19 @@ const Landing = ({ auth:{isAuthenticated} }) => {
             <section className="details">
                 <Card 
                     icon="room" 
+                    // icon={location}
                     title="Find & Connect with Other Developers."
                     description="You can find any developer by technology stack ( i.e - JavaScript developer , AI expert  ) or check for developer around your area."
                 />
                 <Card 
                     icon="message" 
-                    title="share Post & Projects"
+                    // icon={post}
+                    title="Share Post & Projects"
                     description="You can share anything related to Programming , Frameworks , Projects and many more related ro Computer science."
                 />
                 <Card 
                     icon="code" 
+                    // icon={coding}
                     title="Create Your Own Portfolio"
                     description="You can create your portfolio and share and use it any whee you want."
                 />

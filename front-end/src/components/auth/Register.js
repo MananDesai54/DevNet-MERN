@@ -1,4 +1,4 @@
-import React,{ useState,Fragment } from 'react';
+import React,{ useState } from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
@@ -38,7 +38,7 @@ const Register = ({ setAlert,register,isAuthenticated }) => {
     }
 
     return (
-        <Fragment>
+        <div className="auth register">
             <h1 className="large text-primary">Sign Up</h1>
             <form className="form" onSubmit={onSubmit}>
                 <div className="form-group">
@@ -79,7 +79,7 @@ const Register = ({ setAlert,register,isAuthenticated }) => {
             <p className="my-1 already-text">
                 Already have an account? <Link to="/login">Sign In</Link>
             </p>
-        </Fragment>
+        </div>
     )
 }
 
