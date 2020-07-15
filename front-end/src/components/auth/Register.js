@@ -38,7 +38,7 @@ const Register = ({ setAlert,register,isAuthenticated }) => {
     }
 
     return (
-        <div className="auth register">
+        <div className="auth">
             <h1 className="large text-primary">Sign Up</h1>
             <form className="form" onSubmit={onSubmit}>
                 <div className="form-group">

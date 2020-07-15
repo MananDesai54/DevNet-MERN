@@ -16,18 +16,17 @@ const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,d
     },[getCurrentProfile]);
 
     return  (loading && profile===null)  ? <Loading /> :
-        <Fragment>
+        <div className="dashboard">
             <h1 className="large text-primary">
-                Dashboard
+                Details
             </h1>
-            <p className="lead">
-                <i className="fas fa-user"></i> Welcome { user && user.name }
-            </p>
             { profile ? 
             <Fragment>
                 <DashboardActions />
-                <Experience />
-                <Education />
+                <div className="details">
+                    <Experience />
+                    <Education />
+                </div>
                 <button
                     onClick={() => deleteAccount()}
                     className="btn btn-danger my-2"
@@ -41,7 +40,7 @@ const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,d
                     Create Profile
                 </Link>
             </Fragment> }
-        </Fragment>
+        </div>
 };
 
 Dashboard.prototype = {

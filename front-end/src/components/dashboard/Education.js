@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
@@ -31,7 +31,7 @@ const Education = ({ education,deleteEducation }) => {
     ))
 
     return (
-        <Fragment>
+        <div className="detail">
             <h2 className="my-2">Education Credentials</h2>
             <table className="table">
                 <thead>
@@ -46,7 +46,7 @@ const Education = ({ education,deleteEducation }) => {
                     {educations}
                 </tbody>
             </table>
-        </Fragment>
+        </div>
     )
 }
 
