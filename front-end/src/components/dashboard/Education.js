@@ -8,44 +8,25 @@ import { deleteEducation } from '../../actions/profiles';
 const Education = ({ education,deleteEducation }) => {
 
     const educations = education.map(edu=>(
-        <tr key={edu._id}>
-            <td>{edu.school}</td>
-            <td className="hide-sm">{edu.degree}</td>
-            <td>
-                <Moment format="YYYY/MM/DD">{moment.utc(edu.from)}</Moment> -{' '}
-                {edu.current ? (
-                ' Now'
-                ) : (
-                <Moment format="YYYY/MM/DD">{moment.utc(edu.to)}</Moment>
-                )}
-            </td>
-            <td>
-                <button
-                    onClick={() => deleteEducation(edu._id)}
-                    className="btn btn-danger"
-                >
-                Delete
-                </button>
-            </td>
-        </tr>    
+        <div key={edu._id} className="data-edu">
+            <div className="data">
+                <div className="detail-company">{edu.school}</div>
+                <div className="detail-title">{edu.degree}</div>
+            </div>
+            <span>
+                <i className="material-icons">arrow_forward_ios</i>
+            </span>
+        </div>  
     ))
 
     return (
-        <div className="detail">
-            <h2 className="my-2">Education Credentials</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>School</th>
-                        <th className="hide-sm">Title</th>
-                        <th className="hide-sm">Years</th>
-                        <th />
-                    </tr>
-                </thead>
-                <tbody>
+        <div className="details__position">
+            <h2 className="my-1 center">Education</h2>
+            <div className="detail">
+                <div className="detail-data">
                     {educations}
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     )
 }

@@ -29,7 +29,8 @@ export default function(state=initState,action) {
                 ...state,
                 isAuthenticated:false,
                 loading:false,
-                user:null
+                user:null,
+                token:null
             }
     
         case USER_LOADED:
@@ -37,7 +38,7 @@ export default function(state=initState,action) {
                 ...state,
                 isAuthenticated:true,
                 loading:false,
-                user:payload
+                user:payload,
             }
 
         default:

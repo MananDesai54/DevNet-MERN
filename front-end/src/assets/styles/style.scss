@@ -47,12 +47,17 @@ html {
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
+    border: none;
+    cursor: pointer;
 }
 .btn-primary {
     @include button($primary-color,$light-color)
 }
 .btn-light {
     @include button(gray,white)
+}
+.btn-danger {
+    @include button(red,white);
 }
 .my-1 {
     margin: 1em 0;
@@ -80,6 +85,9 @@ html {
 }
 .m-3 {
     margin: 3em;
+}
+.center {
+    text-align: center;
 }
 
 /*navbar*/
@@ -347,6 +355,7 @@ margin: 0 0.25rem;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-bottom: 2px solid $primary-color;
     transition: transform 400ms ease-in-out,
     box-shadow 400ms ease-in-out;
     cursor: pointer;
@@ -360,7 +369,6 @@ margin: 0 0.25rem;
     }
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 5px 10px rgba($color: $dark-color, $alpha: 0.5);
     }
 }
 
@@ -385,6 +393,9 @@ margin: 0 0.25rem;
 //dashboard
 .dashboard {
     color: #aaa;
+    .not-profile {
+        margin: 10px;
+    }
     .dash-buttons {
         display: flex;
         justify-content: space-around;
@@ -393,14 +404,106 @@ margin: 0 0.25rem;
     .details {
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
-        .detail {
-            display: flex;
-            flex-direction: column;
+        gap: 2.7em;
+        .details__position {
+            position: relative;
             background: $other-dark;
-            justify-content: flex-start;
-            align-items: center;
-            padding:0 3em 2em;
-            border-radius: 10px;
+            border-radius: 20px;
+            border-bottom: 2px solid $primary-color;
+            h2{
+                position: absolute;
+                top: -25px;
+                left: 0;
+                background: $primary-color;
+                padding: 0.2em;
+                border-radius:20px;
+                z-index: -1;
+                transition: top 400ms ease-in-out,
+                border-radius 400ms ease-in-out;
+            }
+            &:hover {
+                border-radius: 0 0 20px 20px;
+                h2 {
+                    transition: top 400ms ease-in-out,
+                    border-radius 400ms ease-in-out;
+                    top: -60px;
+                    border-radius: 0.3em 0.3em 0 0;
+                }
+            }
+            .detail {
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                background: $other-dark;
+                justify-content: flex-start;
+                padding:2em 3em 1em;
+                border-radius: 20px;
+                transition: all 400ms ease-in-out;
+                .detail-data {
+                    .detail-exp,.data-edu {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        cursor: pointer;
+                        margin-bottom: 0.6em;
+                        padding: 0.5em 1em;
+                        border-radius: 10px;
+                        transition: background 400ms ease-in-out;
+                        &:hover{
+                            background:$dark-accent
+                        }
+                        .detail-company {
+                            font-weight: bold;
+                            font-size: 1.5em;
+                        }
+                    }
+                }
+            }
         }
+    }
+    .icon-button {
+        padding: 0.6rem;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #555;
+        transition: filter 400ms ease-in-out;
+        &:hover{
+            filter: brightness(1.2);
+        }
+        &:active{
+            transform: scale(0.9);
+        }
+    }
+    .detail-primary-enter {
+        position: absolute;
+        transform: translateX(-110%);
+    }
+    .detail-primary-enter-active {
+        transform: translateX(0%);
+        transition: all 300ms ease-in-out;
+    }
+    .detail-primary-exit {
+        // position: absolute;
+    }
+    .detail-primary-exit-active {
+        transform: translateX(-110%);
+        transition: all 300ms ease-in-out;
+    }
+    
+    .detail-secondary-enter {
+        position: absolute;
+        transform: translateX(110%);
+    }
+    .detail-secondary-enter-active {
+        transform: translateX(0%);
+        transition: all 300ms ease-in-out;
+    }
+    .detail-secondary-exit {
+        // position: absolute;
+    }
+    .detail-secondary-exit-active {
+        transform: translateX(110%);
+        transition: all 300ms ease-in-out;
     }
 }

@@ -18,7 +18,7 @@ const DropDown = ({ profile,loading,setTheme,logout,theme:{
     const [height,setHeight] = useState(null);
 
     const calcHeight = e =>{
-        setHeight(e.offsetHeight+80);
+        setHeight(e.offsetHeight);
     }
 
     const changeTheme = () =>{

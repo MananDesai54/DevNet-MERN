@@ -17,9 +17,6 @@ const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,d
 
     return  (loading && profile===null)  ? <Loading /> :
         <div className="dashboard">
-            <h1 className="large text-primary">
-                Details
-            </h1>
             { profile ? 
             <Fragment>
                 <DashboardActions />
@@ -35,10 +32,11 @@ const Dashboard = ({ profile:{profile},auth:{ user,loading },getCurrentProfile,d
                 </button>
             </Fragment> : 
             <Fragment>
-                <p>You have not created a profile , Please add some info.</p>
-                <Link to="create-profile" className="btn btn-primary my-1">
+                <p className="not-profile">You have not created a profile , Please add some info.</p>
+                <Link to="create-profile" className="m-2" style={{border:'none',padding:10,color:'white',background:'#484a4d'}}>
                     Create Profile
                 </Link>
+                <h2>Welcome</h2>
             </Fragment> }
         </div>
 };

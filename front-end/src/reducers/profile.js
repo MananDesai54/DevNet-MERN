@@ -70,6 +70,7 @@ export default function (state = initState, action) {
                 ...state,
                 profile:null,
                 repositories:[],
+                visitedProfile:null
             }
 
         default:

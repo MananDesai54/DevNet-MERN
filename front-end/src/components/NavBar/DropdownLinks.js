@@ -14,10 +14,10 @@ const DropdownLinks = ({ left,title,right,setActiveMenu }) => {
 }
 
 DropdownLinks.propTypes = {
-    left:PropTypes.string.isRequired,
-    right:PropTypes.string.isRequired,
-    title:PropTypes.string.isRequired,
-    setActiveMenu:PropTypes.func.isRequired,
+    left:PropTypes.string,
+    right:PropTypes.string,
+    title:PropTypes.string,
+    setActiveMenu:PropTypes.func,
 }
 
 export default DropdownLinks;
