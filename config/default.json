@@ -1,6 +1,0 @@
-{
-    "mongoURI":"mongodb+srv://manan:manan5401@cluster0-zkbxs.mongodb.net/devDB?retryWrites=true&w=majority",
-    "jwtSecretKey":"mytoken",
-    "githubClientID":"8dc9199c1ac8d88a0dc9",
-    "githubSecret":"52d167a14f848a79d19d5b6f94b4d8ed45397148"
-}
